@@ -1,0 +1,33 @@
+# Ignore everything by default
+*
+
+# Descend into directories
+!**/
+
+# Allow
+!.cz.yaml
+!.editorconfig
+!.gitattributes
+!.gitignore
+!.pre-commit-config.yaml
+!.version
+!CHANGELOG.md
+!compose.yaml
+!LICENSE
+!README.md
+
+!/.github/**/*
+!/dev/**/*
+!/docs/**/*
+!/src/**/*
+!/test/**/*
+
+# Deny
+.env
+ignore.*
+.DS_Store
+build
+log.txt
+shellspec
+spec
+tmp

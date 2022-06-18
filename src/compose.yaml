@@ -1,0 +1,35 @@
+version: "3"
+services:
+  send:
+    container_name: "xc-copy-send"
+    image: "xc-copy-send:latest"
+    network_mode: "host"
+    build:
+      context: ./
+      dockerfile: container/send.Dockerfile
+    environment:
+      - XBOX_FTP_ID=${XBOX_FTP_ID}
+      - XBOX_FTP_KEY=${XBOX_FTP_KEY}
+      - XBOX_HOST_IP=${XBOX_HOST_IP}
+      - XBOX_ID=${XBOX_ID}
+      - XBOX_NAME=${XBOX_NAME}
+      - XBOX_REMOTE_TARGET=${XBOX_REMOTE_TARGET}
+    volumes:
+       - ${XBOX_LOCAL_SOURCE}:/xbox/send
+
+  receive:
+    container_name: "xc-copy-receive"
+    image: "xc-copy-receive:latest"
+    network_mode: "host"
+    build:
+      context: ./
+      dockerfile: container/receive.Dockerfile
+    environment:
+      - XBOX_FTP_ID=${XBOX_FTP_ID}
+      - XBOX_FTP_KEY=${XBOX_FTP_KEY}
+      - XBOX_HOST_IP=${XBOX_HOST_IP}
+      - XBOX_ID=${XBOX_ID}
+      - XBOX_NAME=${XBOX_NAME}
+      - XBOX_REMOTE_SOURCE=${XBOX_REMOTE_SOURCE}
+    volumes:
+       - ${XBOX_LOCAL_TARGET}:/xbox/receive
